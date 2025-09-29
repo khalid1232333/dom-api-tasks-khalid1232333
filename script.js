@@ -76,7 +76,25 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
- 
+ // TODO3: Inspiring Quote Board
+document.getElementById("t3-loadQuote").addEventListener("click", async () => {
+  try {
+    const res = await fetch("https://dummyjson.com/quotes/random");
+    if (!res.ok) throw new Error("Network error");
+    const data = await res.json();
+
+    // Support either {content, author} or {quote, author}
+    const text = data.content ?? data.quote ?? "No quote found.";
+    const author = data.author ?? "Unknown";
+
+    document.getElementById("t3-quote").textContent = `"${text}"`;
+    document.getElementById("t3-author").textContent = `— ${author}`;
+  } catch {
+    document.getElementById("t3-quote").textContent = "Failed to load quote.";
+    document.getElementById("t3-author").textContent = "";
+  }
+});
+
 
 /*  
 =======================================
