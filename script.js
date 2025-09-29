@@ -120,3 +120,18 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+
+
+// TODO4: Dammam Weather Now
+document.getElementById("t4-loadWx").addEventListener("click", async () => {
+  const API_KEY = "YOUR_API_KEY"; // replace with your actual OpenWeatherMap key
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=Dammam&appid=${API_KEY}&units=metric`;
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Weather request failed");
+    const data = await res.json();
+
+    document.getElementById("t4-temp").textContent = `${Math.round(data.main.temp)} °C`;
+    document.getElementBy
+
